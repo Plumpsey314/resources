@@ -18,9 +18,12 @@ below should be the only one in this file.
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-
-
+  // This function will NOT check if odds and evens is alreay populated.
+  // Since everything is prepended, 
+  // prpend in->value to evens since we start at zero
+  if(!in) return;
+  split(in->next, evens, odds);
+  evens = new Node(in->value, evens);
 }
 
 /* If you needed a helper function, write it here */
