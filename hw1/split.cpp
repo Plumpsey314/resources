@@ -18,12 +18,28 @@ below should be the only one in this file.
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  // This function will NOT check if odds and evens is alreay populated.
-  // Since everything is prepended, 
-  // prpend in->value to evens since we start at zero
-  if(!in) return;
-  split(in->next, evens, odds);
-  evens = new Node(in->value, evens);
+  //The procedure is the recursive calls eat the head of via (in=in->next), until in becomes NULL
+  // odds and evens are being built by being set to in and then having their next node be inplemented into the recursion.
+  // For example if an even number appears, evens will be set to in, and then split(in->next, odds, evens->next)
+  // will be called. Eventually evens->next will be replaced by a new list starting at an even number until 
+  // the list ends, in which case it will be set to nullptr.
+
+  if(!in){
+    // if the last thing is even, odds will point to an even thing unless if set to NULL.
+    // and vice versa
+    odds = nullptr; // don't know why I can't set these to NULL.
+    evens = nullptr;
+    return;
+  }
+  if(in->value%2==0){
+    evens = in;
+    in = in->next;
+    return split(in, odds, evens->next);
+  }else{
+    odds = in;
+    in = in->next;
+    return split(in, odds->next, evens);
+  }
 }
 
 /* If you needed a helper function, write it here */

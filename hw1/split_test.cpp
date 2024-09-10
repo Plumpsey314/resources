@@ -65,14 +65,14 @@ bool fail_check(Node*& odds, Node*& odds_exp, Node*&evens, Node*&evens_exp, Node
   // if everything is good, false is returned.
 
   split(in, odds, evens);
-  if(!(node_equals(odds_exp, odds) && node_equals(evens_exp, evens))){
+  if(!(node_equals(odds_exp, odds) && node_equals(evens_exp, evens) && in==NULL)){
     cout << "test failed" << endl;
-
+    
     cout << "Odds:" << endl;
     print(odds);
     cout << "Evens:" << endl;
     print(evens);
-    
+
     reset(odds, odds_exp, evens, evens_exp, in);
     return true;
   }
@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
   // when in is a list of length one, evens should be updated and odds should not.
   int arr[1] = {1};
   in = from_arr(arr, 1);
-  evens_exp = from_arr(arr, 1);
+  odds_exp = from_arr(arr, 1);
 
   if(fail_check(odds, odds_exp, evens, evens_exp, in)) return 1;
   }
@@ -108,8 +108,8 @@ int main(int argc, char* argv[])
   {
   // testing length 2
   int arr[2] = {1,36};
-  int arr_od[1] = {36};
-  int arr_ev[1] = {1};
+  int arr_od[1] = {1};
+  int arr_ev[1] = {36};
   in = from_arr(arr, 2);
   odds_exp = from_arr(arr_od, 1);
   evens_exp = from_arr(arr_ev, 1);
@@ -120,11 +120,11 @@ int main(int argc, char* argv[])
   {
   // testing length 5
   int arr[5] = {-2,0,2,8,79};
-  int arr_od[2] = {0, 8};
-  int arr_ev[3] = {-2,2,79};
+  int arr_od[1] = {79};
+  int arr_ev[4] = {-2,0,2,8};
   in = from_arr(arr, 5);
-  odds_exp = from_arr(arr_od, 2);
-  evens_exp = from_arr(arr_ev, 3);
+  odds_exp = from_arr(arr_od, 1);
+  evens_exp = from_arr(arr_ev, 4);
 
   if(fail_check(odds, odds_exp, evens, evens_exp, in)) return 1;
   }
@@ -132,31 +132,11 @@ int main(int argc, char* argv[])
   {
   // testing length 14
   int arr[14] = {0,40,28,35,-65536, 100, 696969, 420, 9, -10, 11, 12, 7, 7};
-  int arr_od[7] = {40, 35, 100, 420, -10, 12, 7};
-  int arr_ev[7] = {0,28,-65536, 696969, 9, 11, 7};
+  int arr_od[6] = {35,696969,9,11,7,7};
+  int arr_ev[8] = {0, 40,28,-65536, 100, 420, -10, 12};
   in = from_arr(arr, 14);
-  odds_exp = from_arr(arr_od, 7);
-  evens_exp = from_arr(arr_ev, 7);
-
-  if(fail_check(odds, odds_exp, evens, evens_exp, in)) return 1;
-  }
-
-  {
-  // testing when evens and odds do not start out as empty
-  // since everything in in is prepended, we expect the lists odd and even to start with the contents of in
-  // and then to include the values they previously stored
-  int arr[5] = {0,1,2,3,4};
-  int arr_od[11] = {1,3,3,1,4,1,5,9,2,6,5};
-  int arr_ev[7] = {0,2,4,2,7,1,8};
-  in = from_arr(arr, 5);
-  odds_exp = from_arr(arr_od, 11);
-  evens_exp = from_arr(arr_ev, 7);
-
-  // setting odds and evens before caling split. 
-  int pi[9] = {3,1,4,1,5,9,2,6,5};
-  int e[4] = {2,7,1,8};
-  odds = from_arr(pi, 9);
-  evens = from_arr(e, 4);
+  odds_exp = from_arr(arr_od, 6);
+  evens_exp = from_arr(arr_ev, 8);
 
   if(fail_check(odds, odds_exp, evens, evens_exp, in)) return 1;
   }
