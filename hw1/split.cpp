@@ -27,7 +27,7 @@ void split(Node*& in, Node*& odds, Node*& evens)
   if(!in){
     // if the last thing is even, odds will point to an even thing unless if set to NULL.
     // and vice versa
-    odds = nullptr; // don't know why I can't set these to NULL.
+    odds = nullptr; // don't know why I can't set these to NULL. Have to use nullptr instead.
     evens = nullptr;
     return;
   }
