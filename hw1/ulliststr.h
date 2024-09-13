@@ -27,6 +27,19 @@ class ULListStr {
       first = last = 0;
       prev = next = NULL;
     }
+
+    /**
+     * TODO: ask if it is allowed to create custom constructor
+     * @param st is a single string we will insert into val
+     * @param infrot describes where we will insert this string. If true, at the front, 
+     *  if, false at the back. 
+     */
+    Item(std::string st, bool infront){
+      prev = next = NULL;
+      first = infront? 0: ARRSIZE-1;
+      last = first+1;
+      val[first] = st;
+    }
   };
 
   /**
@@ -120,7 +133,6 @@ class ULListStr {
    *   - MUST RUN in O(n) 
    */
   std::string* getValAtLoc(size_t loc) const;
-
 
   /**
    * Data members
