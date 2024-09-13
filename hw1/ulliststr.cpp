@@ -2,6 +2,10 @@
 #include <stdexcept>
 #include "ulliststr.h"
 
+//TODO:REMOVE
+#include<iostream>
+using namespace std;
+
 ULListStr::ULListStr()
 {
   head_ = NULL;
@@ -54,7 +58,7 @@ void ULListStr::push_front(const std::string& val){
   }else if(head_->first == 0){
     Item* toAdd = new Item(val, false);
     toAdd -> next = head_;
-    tail_ -> prev = head_;
+    head_ -> prev = toAdd;
     head_ = toAdd;
   }else{
     head_->val[head_->first-1]=val;

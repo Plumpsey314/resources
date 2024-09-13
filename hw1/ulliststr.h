@@ -29,7 +29,7 @@ class ULListStr {
     }
 
     /**
-     * TODO: ask if it is allowed to create custom constructor
+     * TODO: ask if it is allowed to create custom constructor. also ask how to catch exceptions
      * @param st is a single string we will insert into val
      * @param infrot describes where we will insert this string. If true, at the front, 
      *  if, false at the back. 
