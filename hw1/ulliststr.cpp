@@ -2,10 +2,6 @@
 #include <stdexcept>
 #include "ulliststr.h"
 
-//TODO:REMOVE
-#include<iostream>
-using namespace std;
-
 ULListStr::ULListStr()
 {
   head_ = NULL;
@@ -29,8 +25,7 @@ size_t ULListStr::size() const
 }
 
 void ULListStr::push_back(const std::string& val){
-  // adding a item with an element at the front.
-  // Using Redekop's idea of inserting an Item with the string at the 
+  // If the list starts as empty, Using Redekop's idea of inserting an Item with the string at the 
   // front for push back and at the back for push front.    
   if(!tail_){
     // list is empty
@@ -46,6 +41,7 @@ void ULListStr::push_back(const std::string& val){
   }else{
     // Ideally, we add val to an existing item
     tail_->val[tail_->last]=val;
+    // change the last reference too
     tail_->last++;
   }
   size_++;
@@ -109,9 +105,19 @@ void ULListStr::pop_front(){
   size_ --;
 }
 
-std::string const & ULListStr::back() const{  return tail_->val[tail_->last-1]; }
+std::string const & ULListStr::back() const{ 
+  if(empty()){
+    throw std::invalid_argument("Can not call back or front on an empty ULL");
+  }
+  return tail_->val[tail_->last-1]; 
+}
 
-std::string const & ULListStr::front() const{ return head_->val[head_->first]; }
+std::string const & ULListStr::front() const{ 
+  if(empty()){
+    throw std::invalid_argument("Can not call back or front on an empty ULL");
+  }
+  return head_->val[head_->first];
+}
 
 void ULListStr::set(size_t loc, const std::string& val)
 {
