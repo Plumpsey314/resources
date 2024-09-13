@@ -130,7 +130,7 @@ int main(int argc, char* argv[])
   // No pop back/front
   // set/get exceptions
   if(matchCheck("", dat)) return 1;
-  if(sizeCheck(0, dat)) return 1;
+  if(sizeCheck(0, dat)) return 1; 
   if(setCheck("Nathan", 0, dat)) return 1;
   delete dat;
 
