@@ -25,8 +25,8 @@ class Student : public Person {
 		void setGPA(double gpa);
 	protected:
 		std::string mMajor;
-	private:
 		double mGpa;
+	private:
 };
 
 class UscStudent : protected Student {
