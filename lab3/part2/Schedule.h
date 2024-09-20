@@ -20,4 +20,5 @@ private:
 	bool mComplete;
 	int mPriority;
 	std::map<std::string, Course*> courseMap;
+	Course* findCourse(std::string name);
 };

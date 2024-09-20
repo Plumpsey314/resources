@@ -23,10 +23,6 @@ std::string Assignment::getName() {
 	return mName;
 }
 
-std::string Assignment::getType() {
-	return "Assignment";
-}
-
 bool Assignment::isComplete() {
 	return mComplete;
 }
