@@ -99,16 +99,42 @@ int main(int argc, char* argv[])
                 }
                 done = true;
             }
-	    /* Add support for other commands here */
-
-
-
-
+            else if(cmd == "ADD"){
+                std::string username;
+                size_t hitNum;
+                ss >> username >> hitNum;
+                User* user = ds.findUser(username);
+                if(ss.fail() || hitNum >= hits.size() || user==NULL){ 
+                    cout << "Invalid request" << endl;
+                    continue; 
+                }
+                Product* product = hits[hitNum];
+                ds.addToCart(user, product);
+            }
+            else if(cmd == "VIEWCART"){
+                std::string username;
+                ss >> username;
+                User* user = ds.findUser(username);
+                if(ss.fail() || user==NULL){ 
+                    cout << "Invalid request" << endl;
+                    continue; 
+                }
+                ds.viewCart(user);
+            }
+            else if(cmd == "BUYCART"){
+                std::string username;
+                ss >> username;
+                User* user = ds.findUser(username);
+                if(ss.fail() || user==NULL){ 
+                    cout << "Invalid request" << endl;
+                    continue; 
+                }
+                ds.buyCart(user);
+            }
             else {
                 cout << "Unknown command" << endl;
             }
         }
-
     }
     return 0;
 }

@@ -1,4 +1,5 @@
 #include <map>
+#include <queue>
 #include "datastore.h"
 
 class MyDataStore : public DataStore{
@@ -28,8 +29,17 @@ class MyDataStore : public DataStore{
          * Reproduce the database file from the current Products and User values
          */
         void dump(std::ostream& ofile);
+
+        User* findUser(std::string username);
+
+        void addToCart(User* user, Product* product);
+
+        void viewCart(User* user);
+
+        void buyCart(User* user);
     private:
         std::vector<Product* > products_;
-        std::vector<User* > users_;
+        std::map<std::string, User*> users_;
         std::map<std::string, std::set<Product*>> keywordMapping_;
+        std::map<User*, std::queue<Product*>> carts_;
 };
