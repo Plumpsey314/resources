@@ -31,9 +31,6 @@ std::set<std::string> parseStringToWords(string rawWords)
     for(size_t i = 0; i < rawWords.length(); i++){
         char c = rawWords[i];
         // "cat" is 4 characters long, so i goes up to 3.
-        if(c=='\0' && curLen >= 2){
-            rv.insert(curStr);
-        }
         if(legalChars.find(c) == std::string::npos){
             //was punctuation
             if(curLen >= 2){
@@ -45,6 +42,9 @@ std::set<std::string> parseStringToWords(string rawWords)
             curLen++;
             curStr += c;
         }
+    }
+    if(curLen >= 2){
+        rv.insert(curStr);
     }
     return rv;
 }
