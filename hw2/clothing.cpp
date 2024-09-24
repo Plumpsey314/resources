@@ -34,7 +34,7 @@ std::string Clothing::displayString() const {
     std::string rv = "";
     rv += name_;
     rv += "\nSize: " + size_ + " Brand: " + brand_ + "\n";
-    rv += to_string(price_) + " " + to_string(qty_) + "left.";
+    rv += to_string(price_) + " " + to_string(qty_) + " left.";
     return rv;
 }
 
