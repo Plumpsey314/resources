@@ -27,8 +27,8 @@ void MyDataStore::addProduct(Product* p){
     // adjusting keyword mapping.
     std::set<Product*> productSingelton = std::set<Product*>();
     productSingelton.insert(p);
-    // p->keywords() is O(1) time to run.
-    for(std::set<std::string>::iterator it = p->keywords().begin(); it != p->keywords().end(); ++it){
+    std::set<std::string> keywords = p->keywords();
+    for(std::set<std::string>::iterator it = keywords.begin(); it != keywords.end(); ++it){
         if(keywordMapping_.find(*it) == keywordMapping_.end()){
             keywordMapping_[*it] = productSingelton;
         }else{
