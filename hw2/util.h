@@ -22,16 +22,21 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
     std::set<T>* bigger = size1>size2? &s1: &s2;
     std::set<T>* smaller = size1>size2? &s2: &s1;
 
-    std::set<T> rv = *bigger; // calling copy constructor
+    std::set<T> rv = std::set<T>();
     for(typename std::set<T>::iterator it = smaller->begin(); it != smaller->end(); ++it){
-        rv.erase(*it);
+        if(bigger->find(*it) != bigger->end()){
+            rv.insert(*it);
+        }
     }
     return rv;
 }
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
-    // Similar to intersection but relplace erace() with insert()
+    //n_1= size s1 n_2=size s2
+    // using the copy constructor which is O(n_1)
+    // We can use insert() which is log(n) on s2, making O(n_1+n_2*log(n_1+n_2))
+    // comparing the sizes to improve preformance. Best to copy down the big one and then erace from the smaller one
     size_t size1 = s1.size();
     size_t size2 = s2.size();
     std::set<T>* bigger = size1>size2? &s1: &s2;
