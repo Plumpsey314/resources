@@ -4,13 +4,12 @@
 
 using namespace std;
 
-Book::Book(const std::string category,
-    const std::string name,
+Book::Book(const std::string name,
     double price,
     int qty,
     const std::string author,
     const std::string isbn):
-    Product(category, name, price, qty)
+    Product("book", name, price, qty)
 {
     author_ = author;
     isbn_ = isbn;
