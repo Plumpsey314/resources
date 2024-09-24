@@ -105,11 +105,11 @@ int main(int argc, char* argv[])
                 size_t hitNum;
                 ss >> username >> hitNum;
                 User* user = ds.findUser(username);
-                if(ss.fail() || hitNum >= hits.size() || user==NULL){ 
+                if(ss.fail() || hitNum <= 0 || hitNum > hits.size() || user==NULL){ 
                     cout << "Invalid request" << endl;
                     continue; 
                 }
-                Product* product = hits[hitNum];
+                Product* product = hits[hitNum-1];
                 ds.addToCart(user, product);
             }
             else if(cmd == "VIEWCART"){
